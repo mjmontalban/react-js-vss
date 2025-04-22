@@ -30,9 +30,9 @@ interface IDialogProps {
 
 export default function EditProductDialog(props: IDialogProps) {
 
-    const [name, setName] = useState(props.name);
-    const [quantity, setQuantity] = useState(props.quantity);
-    const [id, setId] = useState(props.id);
+    const [name, setName] = useState('');
+    const [quantity, setQuantity] = useState(0);
+    const [id, setId] = useState(0);
 
 
     const handleSave = () => {
