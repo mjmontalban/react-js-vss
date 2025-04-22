@@ -36,7 +36,6 @@ export default function EditProductDialog(props: IDialogProps) {
 
 
     const handleSave = () => {
-        console.log("name: ", quantity)
         if(name && quantity && id) {
             props.onSaveEdit(name , quantity, id);
         }
