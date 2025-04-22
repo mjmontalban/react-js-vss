@@ -12,27 +12,41 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
 import { useState } from 'react';
-interface IDialogProps {
-    isOpen: boolean,
-    onSave: (name: String, quantity: number) => void,
-    onClose: (val: boolean) => void,
 
+interface IProducts {
+    id: number,
+    name: String,
+    quantity: number
 }
 
-export default function ProductDialog(props: IDialogProps) {
+interface IDialogProps {
+    isOpen: boolean,
+    onSaveEdit: (name: String, quantity: number, id: number) => void,
+    onClose: (val: boolean) => void,
+    name: String | undefined,
+    quantity: number | undefined,
+    id: number | undefined
+}
 
-    const [name, setName] = useState('');
-    const [quantity, setQuantity] = useState(1);
+export default function EditProductDialog(props: IDialogProps) {
+
+    const [name, setName] = useState(props.name);
+    const [quantity, setQuantity] = useState(props.quantity);
+    const [id, setId] = useState(props.id);
+
 
     const handleSave = () => {
-        props.onSave(name , quantity);
+        console.log("name: ", quantity)
+        if(name && quantity && id) {
+            props.onSaveEdit(name , quantity, id);
+        }
     }
   return (
     <Dialog open={props.isOpen}>
     
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Add Product</DialogTitle>
+          <DialogTitle>Edit Product</DialogTitle>
           {/* <DialogDescription>
             Make changes to your profile here. Click save when you're done.
           </DialogDescription> */}
@@ -44,7 +58,7 @@ export default function ProductDialog(props: IDialogProps) {
             </Label>
             <Input
               id="name"
-              defaultValue={name}
+              defaultValue={props.name?.toString()}
               onChange={(e) => setName(e.target.value)}
               className="col-span-3"
             />
@@ -55,15 +69,22 @@ export default function ProductDialog(props: IDialogProps) {
             </Label>
             <Input
               id="quantity"
-              defaultValue={quantity}
+              defaultValue={props.quantity}
               onChange={(e) => setQuantity(parseInt(e.target.value))}
+              className="col-span-3"
+            />
+             <Input
+              id="quantity"
+              type="hidden"
+              defaultValue={props.id}
+              onChange={(e) => setId(parseInt(e.target.value))}
               className="col-span-3"
             />
           </div>
         </div>
         <DialogFooter>
           <Button onClick={() => {props.onClose(false)}}>Close</Button>
-          <Button onClick={() => {handleSave()}} type="submit">Submit</Button>
+          <Button onClick={() => {handleSave()}} type="submit">Save changes</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
