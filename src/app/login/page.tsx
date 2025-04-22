@@ -11,6 +11,8 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 
+import { toast } from "sonner"
+
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
@@ -24,13 +26,24 @@ const [disable, setDisable] = useState(false);
 const [loading, setLoading] = useState(false);
 
 const handleLoginClick = () => {
+
     setLoading(true);
     setDisable(true);
 
     axios_instance.post('login',{
         email: email,
         password: password
-    }).then((response) => {
+    }).then((response: any) => {
+        
+        const res = response.data;
+        if(res.status) {
+            toast.success(res.message);
+        }else{
+            toast.error(res.message);
+        }
+
+        localStorage.setItem('token', res.key);
+
         setLoading(false);
         setDisable(false);
     }).catch((error) => {
@@ -61,6 +74,7 @@ const handleLoginClick = () => {
         {/* <Button variant="outline">Cancel</Button> */}
         <Button disabled={disable} onClick={handleLoginClick}> { !loading ? 'Login' : 'Logging In'}</Button>
       </CardFooter>
+      
     </Card>
   )
 }
