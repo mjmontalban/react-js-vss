@@ -26,7 +26,7 @@ import { Interface } from "readline"
   export default function ProductTable(props: ITableProps) {
     return (
       <Table>
-        <TableCaption>A list of your products.</TableCaption>
+        <TableCaption>{ props.items.length < 1 ? 'Empty Product': 'A list of your products.'}</TableCaption>
         <TableHeader>
           <TableRow>
             <TableHead className="w-[100px]">Name</TableHead>

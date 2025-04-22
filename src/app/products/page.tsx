@@ -45,7 +45,13 @@ export default function Products () {
 
 
     const onDelete = (id: number) => {
-
+        axios_instance.delete('delete_product', {
+            params: {
+                id: id
+            }
+        }).then((response: IResponse) => {
+            setProducts((prev) => prev.filter((item) => item.id !== id));
+        })
     }
 
     const onShowEditDetails = (id: number) => {
