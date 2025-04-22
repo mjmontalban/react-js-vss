@@ -23,7 +23,7 @@ export default function CardWithForm() {
   return (
          <Card className="w-[350px]">
       <CardHeader>
-        <CardTitle>Create project</CardTitle>
+        <CardTitle>Create calendar</CardTitle>
         <CardDescription>Deploy your new project in one-click.</CardDescription>
       </CardHeader>
       <CardContent>

@@ -27,7 +27,7 @@ export default function Counter() {
   return (
     <Card className="w-[350px]">
         <CardHeader>
-            <CardTitle>Create project</CardTitle>
+            <CardTitle>Create HOME</CardTitle>
             <CardDescription>Deploy your new project in one-click.</CardDescription>
         </CardHeader>
         <CardContent>
