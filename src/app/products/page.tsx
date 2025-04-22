@@ -1,16 +1,27 @@
 'use client'
+
 import { useState, useEffect } from "react";
 
-
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import ProductTable from "@/components/tables/product-table"
 import axios_instance from '../../api/axios'
 
 interface IProducts {
+    id: number,
     name: String,
     quantity: number
 }
 
 interface IResponse {
-    data: IProducts[]
+    data: {
+        data: IProducts[]
+    }
 }
 
 export default function Products () {
@@ -27,12 +38,32 @@ export default function Products () {
                 offset: offset
             }
         }).then((response: IResponse) => {
-            setProducts(response.data)
+            setProducts(response.data.data)
         })
 
     }, []);
 
+
+    const onDelete = (id: number) => {
+
+    }
+
+    const onShowEditDetails = (id: number) => {
+
+    }
+
     return (
-        <div>Product list</div>
+        <Card className="w-[350px]"> 
+        <CardHeader>
+            <CardTitle>Products</CardTitle>
+        </CardHeader>
+        <CardContent>
+            <ProductTable items={products} onDelete={onDelete} onShowEditDetails={onShowEditDetails} />
+        </CardContent>
+        <CardFooter className="flex justify-between">
+        
+        </CardFooter>
+      
+    </Card>
     )
 }
