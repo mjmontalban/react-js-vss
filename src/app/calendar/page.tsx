@@ -21,8 +21,6 @@ import {
 
 export default function CardWithForm() {
   return (
-
-    <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
          <Card className="w-[350px]">
       <CardHeader>
         <CardTitle>Create project</CardTitle>
@@ -57,7 +55,6 @@ export default function CardWithForm() {
         <Button>Deploy</Button>
       </CardFooter>
     </Card>
-    </div>
    
   )
 }
