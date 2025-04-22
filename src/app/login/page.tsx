@@ -15,6 +15,8 @@ import { toast } from "sonner"
 
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { useRouter } from 'next/navigation'
+
 
 import { useState } from 'react'
 import axios_instance from '../../api/axios'
@@ -24,6 +26,7 @@ const [email, setEmail] = useState('');
 const [password, setPassword] = useState('');
 const [disable, setDisable] = useState(false);
 const [loading, setLoading] = useState(false);
+const router = useRouter()
 
 const handleLoginClick = () => {
 
@@ -38,6 +41,7 @@ const handleLoginClick = () => {
         const res = response.data;
         if(res.status) {
             toast.success(res.message);
+            router.push("/products")
         }else{
             toast.error(res.message);
         }
